@@ -11,6 +11,7 @@ allure-pytest = "^2.13.2"
 selene = "^2.0.0rc4"
 python-dotenv = "^1.0.0"
 pytest = "^7.4.4"
+jsonschema = "^4.21.0"
 
 
 [build-system]
