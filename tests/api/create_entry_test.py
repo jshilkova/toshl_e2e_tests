@@ -11,8 +11,14 @@ from utils import api
 from utils.load_schema import load_schema
 from .conftest import API_URL
 
-
+@allure.feature('Entry API')
+@allure.story('Create entry')
+@allure.label('owner', 'allure8')
+@allure.tag('smoke', 'regress', 'API')
+@allure.label('layer', 'API')
 class TestCreateEntry:
+    @allure.title('Add entry successfully')
+    @allure.severity('blocker')
     def test_response_success(self, session, remove_all_entries):
 
         with allure.step("Create entry"):

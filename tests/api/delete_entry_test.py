@@ -12,7 +12,14 @@ from utils.load_schema import load_schema
 from .conftest import API_URL
 
 
+@allure.feature('Entry API')
+@allure.story('Delete entry')
+@allure.label('owner', 'allure8')
+@allure.tag('smoke', 'regress', 'API')
+@allure.label('layer', 'API')
 class TestCreateEntry:
+    @allure.title('Delete entry successfully')
+    @allure.severity('blocker')
     def test_success(self, session, remove_all_entries):
 
         with allure.step("Create entry"):
@@ -28,6 +35,8 @@ class TestCreateEntry:
         with allure.step("Validate response content is empty"):
             assert resp.content.decode() == ''
 
+    @allure.title('Delete not existing entry')
+    @allure.severity('normal')
     def test_failed_not_existing(self, session, remove_all_entries):
         not_existing_id = "1"
         with allure.step("Delete entry"):

@@ -14,7 +14,14 @@ from utils.load_schema import load_schema
 from utils import api
 
 
+@allure.feature('Entry API')
+@allure.story('Get entries')
+@allure.label('owner', 'allure8')
+@allure.tag('smoke', 'regress', 'API')
+@allure.label('layer', 'API')
 class TestGetEntries:
+    @allure.title('Get entries')
+    @allure.severity('critical')
     def test_response_success(self, session, remove_all_entries):
         api.add_entry(session, EntryType.EXPENSE, category.education.id, 120)
         api.add_entry(session, EntryType.EXPENSE, category.charity.id, 140)
@@ -42,6 +49,8 @@ class TestGetEntries:
             assert entries[0]['currency']['code'] == 'GEL'
             assert entries[1]['currency']['code'] == 'GEL'
 
+    @allure.title('Get empty entries list')
+    @allure.severity('minor')
     def test_empty_response(self, session, remove_all_entries):
 
         with allure.step("Get entries"):
