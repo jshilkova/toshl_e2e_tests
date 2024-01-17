@@ -1,24 +1,8 @@
-import json
-import os
-from dataclasses import dataclass
-from datetime import datetime
-from time import sleep
-
 import allure
 import pytest
-import requests
-from dotenv import load_dotenv
-from selene.support.shared import browser
-from selenium import webdriver
-from selenium.webdriver.chrome.options import Options
-
-import os
-import sys
 from config import API_URL
 from toshl_finance_demo.data.user import User
-from utils import api, attach
-
-# from utils import attach
+from utils import api
 
 test_user = User.create()
 

@@ -17,7 +17,7 @@ from .conftest import API_URL
 @allure.tag('smoke', 'regress', 'API')
 @allure.label('layer', 'API')
 class TestCreateEntry:
-    @allure.title('Add entry successfully')
+    @allure.title('Create income entry')
     @allure.severity('blocker')
     def test_response_success(self, session, remove_all_entries):
 

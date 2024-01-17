@@ -1,9 +1,4 @@
-import json
 import os
-from dataclasses import dataclass
-from datetime import datetime
-from time import sleep
-
 import allure
 import pytest
 import requests
@@ -14,8 +9,6 @@ from selenium.webdriver.chrome.options import Options
 
 from toshl_finance_demo.data.user import User
 from utils import api, attach
-
-# from utils import attach
 
 API_URL = 'https://toshl.com'
 test_user = User.create()

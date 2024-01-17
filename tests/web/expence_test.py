@@ -132,7 +132,7 @@ class TestExpense:
         with allure.step("Verify expense is listed twice"):
             right_panel.should_have_records_count(2)
 
-    @allure.title('Duplicate')
+    @allure.title('Delete')
     @allure.severity('critical')
     def test_delete(self, session, remove_all_entries):
         amount = '130'

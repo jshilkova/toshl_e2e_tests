@@ -1,24 +1,9 @@
-import json
-import os
-from dataclasses import dataclass
-from datetime import datetime
-from time import sleep
-
 import allure
 import pytest
 import requests
-from dotenv import load_dotenv
-from selene.support.shared import browser
-from selenium import webdriver
-from selenium.webdriver.chrome.options import Options
-
-import os
-import sys
 from config import API_URL
 from toshl_finance_demo.data.user import User
 from utils import api
-
-# from utils import attach
 
 test_user = User.create()
 
@@ -30,7 +15,6 @@ def session():
         s.post(url=f'{API_URL}/oauth2/login',
                data={"email": test_user.email,
                      "password": test_user.password})
-        print('!!!', test_user.email, test_user.password)
     return s
 
 
