@@ -1,5 +1,8 @@
+import logging
+
 import allure
 from allure_commons.types import AttachmentType
+import json
 
 
 def add_screenshot(browser):
@@ -23,3 +26,53 @@ def add_video(browser):
            + video_url \
            + "' type='video/mp4'></video></body></html>"
     allure.attach(html, 'video_' + browser.driver.session_id, AttachmentType.HTML, '.html')
+
+def as_pretty_json(data):
+    if not data:
+        return None
+    try:
+        return json.dumps(json.loads(data), indent=4, ensure_ascii=True)
+    except json.JSONDecodeError:
+        return None
+
+def attach_request_and_response_data(r, *args, **kwargs):
+    allure.attach(
+        name="Request url",
+        body=r.request.url,
+        attachment_type=AttachmentType.TEXT)
+    allure.attach(
+        name="Request headers",
+        body=str(r.request.headers),
+        attachment_type=AttachmentType.TEXT)
+    request_body = as_pretty_json(r.request.body)
+    if request_body:
+        allure.attach(
+            name="Request body",
+            body=request_body,
+            attachment_type=AttachmentType.JSON,
+            extension="json")
+    allure.attach(
+        name='Response status code',
+        body=str(r.status_code),
+        attachment_type=allure.attachment_type.TEXT,
+        extension='txt'
+    )
+    response_body = as_pretty_json(r.text)
+    if response_body:
+        allure.attach(
+            name="Response body",
+            body=response_body,
+            attachment_type=AttachmentType.JSON,
+            extension="json")
+
+
+def log_request_and_response_data_to_console(r, *args, **kwargs):
+    logging.info("Request: " + r.request.url)
+    request_body = as_pretty_json(r.request.body)
+    if request_body:
+        logging.info("INFO Request body: " + request_body)
+    logging.info("Request headers: " + str(r.request.headers))
+    logging.info("Response code " + str(r.status_code))
+    response_body = as_pretty_json(r.text)
+    if response_body:
+        logging.info("Response: " + response_body)
