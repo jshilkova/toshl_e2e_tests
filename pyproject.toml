@@ -6,7 +6,7 @@ authors = ["Julia Shilkova <yulia.shilkova@gmail.com>"]
 readme = "README.md"
 
 [tool.poetry.dependencies]
-python = "^3.11"
+python = "^3.10"
 allure-pytest = "^2.13.2"
 selene = "^2.0.0rc4"
 python-dotenv = "^1.0.0"
