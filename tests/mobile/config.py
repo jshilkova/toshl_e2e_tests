@@ -3,7 +3,6 @@ import pydantic
 import pydantic_settings
 from appium.options.android import UiAutomator2Options
 from dotenv import load_dotenv
-from pydantic import Field
 from pydantic_settings import SettingsConfigDict
 
 from toshl_finance_demo.data.context import Context
@@ -11,15 +10,15 @@ from toshl_finance_demo.utils import file_path
 
 
 class Common(pydantic_settings.BaseSettings):
-    timeout: float
+    timeout: float = 10.0
     remote_url: str
     app: str
-    appWaitActivity: str = Field(alias='APP_WAIT_ACTIVITY')
+    app_wait_activity: str = 'com.thirdframestudios.android.expensoor.*'
 
     def to_driver_options(self):
         driver_options = UiAutomator2Options()
         driver_options.set_capability('remote_url', self.remote_url)
-        driver_options.set_capability('appWaitActivity', self.appWaitActivity)
+        driver_options.set_capability('appWaitActivity', self.app_wait_activity)
         return driver_options
 
 
@@ -35,9 +34,9 @@ class LocalSettings(Common):
 
 
 class BstackOptions(pydantic.BaseModel):
-    project_name: str
-    build_name: str
-    session_name: str
+    project_name: str = 'Tests Toshl App'
+    build_name: str = '3.5.19'
+    session_name: str = 'BStack toshl test'
     bs_username: str
     bs_password: str
 
@@ -55,9 +54,9 @@ class BstackOptions(pydantic.BaseModel):
 class BstackSettings(Common):
     model_config = SettingsConfigDict(env_nested_delimiter='__')
 
-    platform_name: str
-    platform_version: str
-    device_name: str
+    platform_name: str = 'Android'
+    platform_version: str = '13.0'
+    device_name: str = 'Google Pixel 7'
     options: BstackOptions
 
     def to_driver_options(self):

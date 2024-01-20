@@ -84,24 +84,24 @@
 ### Переменные среды
 
 
-| Переменная    | cloud | local | Описание                                                                                  |
-| ----------------------- | :---: | :---: | ------------------------------------------------------------------------------------------------- |
-| `LOGIN`                 |  ✓  |      | логин для акаунта Selenoid                                                         |
-| `PASSWORD`              |  ✓  |      | пароль для акаунта Selenoid                                                       |
-| `REMOTE_BROWSER_URL`    |  ✓  |      | Selenoid remote url                                                                               |
-| `TIMEOUT`               |  ✓  |  ✓  | таймаут драйвера                                                                   |
-| `REMOTE_URL`            |  ✓  |  ✓  | url локального appium сервера или browserstack                                |
-| `APP_WAIT_ACTIVITY`     |  ✓  |  ✓  | имя активити приложения                                                      |
-| `APP`                   |  ✓  |  ✓  | apk приложения или идентификатор приложения на Browserstack |
-| `UDID`                  |      |  ✓  | udid эмулятора для запуска                                                     |
-| `PLATFORM_NAME`         |  ✓  |      | имя мобильной платформы для запуска                                |
-| `PLATFORM_VERSION`      |  ✓  |      | версия Android                                                                              |
-| `DEVICE_NAME`           |  ✓  |      | название устройства                                                             |
-| `OPTIONS__PROJECT_NAME` |  ✓  |      | имя проекта                                                                             |
-| `OPTIONS__BUILD_NAME`   |  ✓  |      | билд                                                                                          |
-| `OPTIONS__SESSION_NAME` |  ✓  |      | имя сессии                                                                               |
-| `OPTIONS__BS_USERNAME`  |  ✓  |      | имя пользователя на Browserstack                                                 |
-| `OPTIONS__BS_PASSWORD`  |  ✓  |      | пароль на Browserstack                                                                    |
+| Переменная              | Required | cloud | local | Описание                                                    |
+|-------------------------|:--------:|:-----:|:-----:|-------------------------------------------------------------|
+| `SELENOID_LOGIN`        |    ✓     |   ✓   |       | логин для акаунта Selenoid                                  |
+| `SELENOID_PASSWORD`     |    ✓     |   ✓   |       | пароль для акаунта Selenoid                                 |
+| `SELENOID_REMOTE_URL`   |          |   ✓   |       | Selenoid remote url                                         |
+| `TIMEOUT`               |          |   ✓   |   ✓   | таймаут драйвера                                            |
+| `REMOTE_URL`            |    ✓     |   ✓   |   ✓   | url локального appium сервера или browserstack              |
+| `APP_WAIT_ACTIVITY`     |          |   ✓   |   ✓   | имя активити приложения                                     |
+| `APP`                   |    ✓     |   ✓   |   ✓   | apk приложения или идентификатор приложения на Browserstack |
+| `UDID`                  |    ✓     |       |   ✓   | udid эмулятора для запуска                                  |
+| `PLATFORM_NAME`         |          |   ✓   |       | имя мобильной платформы для запуска                         |
+| `PLATFORM_VERSION`      |          |   ✓   |       | версия Android                                              |
+| `DEVICE_NAME`           |          |   ✓   |       | название устройства                                         |
+| `OPTIONS__PROJECT_NAME` |          |   ✓   |       | имя проекта                                                 |
+| `OPTIONS__BUILD_NAME`   |          |   ✓   |       | билд                                                        |
+| `OPTIONS__SESSION_NAME` |          |   ✓   |       | имя сессии                                                  |
+| `OPTIONS__BS_USERNAME`  |    ✓     |   ✓   |       | имя пользователя на Browserstack                            |
+| `OPTIONS__BS_PASSWORD`  |    ✓     |   ✓   |       | пароль на Browserstack                                      |
 
 Для локального запуска тестов нужно:
 
