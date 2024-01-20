@@ -8,7 +8,7 @@ from toshl_finance_demo.data.user import User
 user = User.create()
 
 
-@allure.feature('Authorization')
+@allure.feature('Mobile authorization')
 @allure.story('Login with username and password')
 @allure.label('microservice', 'MLogin')
 @allure.label('owner', 'allure8')

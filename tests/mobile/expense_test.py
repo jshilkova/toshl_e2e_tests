@@ -11,7 +11,7 @@ from toshl_finance_demo.data.user import User
 user = User.create()
 
 
-@allure.feature('Entries')
+@allure.feature('Mobile entries')
 @allure.story('Expense')
 @allure.label('microservice', 'MEntry')
 @allure.label('owner', 'allure8')
