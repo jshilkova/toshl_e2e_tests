@@ -1,5 +1,4 @@
 import allure
-
 from toshl_finance_demo.components.left_panel import LeftPanel
 from toshl_finance_demo.components.right_panel import RightPanel
 from toshl_finance_demo.pages.login_page import LoginPage

@@ -1,14 +1,13 @@
 import os
-import allure
 import pytest
-import requests
 from dotenv import load_dotenv
 from selene.support.shared import browser
 from selenium import webdriver
 from selenium.webdriver.chrome.options import Options
 
+from toshl_finance_demo.data.context import Context
 from toshl_finance_demo.data.user import User
-from utils import api, attach
+from toshl_finance_demo.utils import api, attach
 
 API_URL = 'https://toshl.com'
 test_user = User.create()
@@ -16,7 +15,7 @@ test_user = User.create()
 
 @pytest.fixture(scope="module", autouse=False)
 def setup_browser(request):
-    if not request.config.getoption('--local'):
+    if request.config.getoption('--context') == Context.CLOUD:
         options = Options()
         selenoid_capabilities = {
             "browserName": "chrome",

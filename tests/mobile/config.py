@@ -5,7 +5,9 @@ from appium.options.android import UiAutomator2Options
 from dotenv import load_dotenv
 from pydantic import Field
 from pydantic_settings import SettingsConfigDict
-from utils import file_path
+
+from toshl_finance_demo.data.context import Context
+from toshl_finance_demo.utils import file_path
 
 
 class Common(pydantic_settings.BaseSettings):
@@ -27,10 +29,9 @@ class LocalSettings(Common):
     def to_driver_options(self):
         driver_options = super().to_driver_options()
         driver_options.set_capability('udid', self.udid)
-        driver_options.set_capability('app', file_path.abs_path_from_project(self.app))
-#        driver_options.set_capability('noReset', True)
+        driver_options.set_capability('app', str(file_path.abs_path_from_project(self.app)))
+        #        driver_options.set_capability('noReset', True)
         return driver_options
-
 
 
 class BstackOptions(pydantic.BaseModel):
@@ -70,11 +71,20 @@ class BstackSettings(Common):
 
 
 def load_config(context):
-    _setup = dict(
-        local_emulator=LocalSettings,
-        local_real=LocalSettings,
-        bstack=BstackSettings)
-    if not load_dotenv(dotenv_path=file_path.abs_path_from_project(f'.env.{context}')):
+    _setup = {
+        Context.LOCAL: LocalSettings,
+        Context.CLOUD: BstackSettings
+    }
+
+    def to_dotenv_file_name(ctx):
+        if ctx == Context.CLOUD:
+            return '.env.bstack'
+        elif ctx == Context.LOCAL:
+            return f'.env.local_emulator'
+        else:
+            raise ValueError(f'Unknown context: {ctx}')
+
+    if not load_dotenv(dotenv_path=str(file_path.abs_path_from_project(to_dotenv_file_name(context)))):
         raise Exception('Failed to load environment')
     config: Union[LocalSettings, BstackSettings] = _setup[context]()
     return config

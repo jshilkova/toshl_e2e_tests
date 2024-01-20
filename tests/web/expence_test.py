@@ -7,7 +7,7 @@ from toshl_finance_demo.components.transaction_dialog import TransactionDialog
 from toshl_finance_demo.data import category, tag
 from toshl_finance_demo.data.transaction import EntryType
 from toshl_finance_demo.pages.expences_page import ExpensesPage
-from utils import api
+from toshl_finance_demo.utils import api
 
 right_panel = RightPanel()
 expenses_page = ExpensesPage()

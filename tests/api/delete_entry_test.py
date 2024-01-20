@@ -1,14 +1,9 @@
-import json
-from datetime import datetime
-
 import allure
-import jsonschema
 import requests
 
 from toshl_finance_demo.data import category
 from toshl_finance_demo.data.transaction import EntryType
-from utils import api
-from utils.load_schema import load_schema
+from toshl_finance_demo.utils import api
 from .conftest import API_URL
 
 

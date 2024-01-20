@@ -1,9 +1,7 @@
-import logging
-
 import allure
 from appium.webdriver.common.appiumby import AppiumBy
 from appium.webdriver.common.touch_action import TouchAction
-from selene import browser, be, have
+from selene import browser, have
 
 from toshl_finance_demo.data import category
 from toshl_finance_demo.data.user import User

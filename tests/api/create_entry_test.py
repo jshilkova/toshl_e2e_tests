@@ -1,8 +1,6 @@
 from datetime import datetime
-
 import allure
 import requests
-
 from toshl_finance_demo.data import category
 from .conftest import API_URL
 

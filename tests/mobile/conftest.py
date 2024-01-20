@@ -1,5 +1,3 @@
-from time import sleep
-
 import allure
 import allure_commons
 import pytest
@@ -8,18 +6,12 @@ from appium import webdriver
 from appium.webdriver.common.appiumby import AppiumBy
 from selene import browser, support, be
 
+from toshl_finance_demo.data.context import Context
 from toshl_finance_demo.data.user import User
-from utils import attach
+from toshl_finance_demo.utils import attach
 from .config import load_config
 
 config_key = StashKey()
-
-
-def pytest_addoption(parser):
-    parser.addoption(
-        '--context',
-        default='bstack'
-    )
 
 
 def pytest_configure(config):
@@ -52,7 +44,7 @@ def mobile_management(pytestconfig):
     with allure.step('Tear down app sessioncwith id' + session_id):
         browser.quit()
 
-    if pytestconfig.getoption('--context') == 'bstack':
+    if pytestconfig.getoption('--context') == Context.CLOUD:
         attach.add_bstack_video(session_id, config.options.bs_username, config.options.bs_password)
 
 
@@ -74,7 +66,8 @@ def login(user):
         browser.wait_until((AppiumBy.XPATH, '//android.widget.TextView[@text="I’m syncing..."]'))
         browser.element((AppiumBy.XPATH, '//android.widget.TextView[@text="I’m syncing..."]')).should(be.not_.present)
 
+        # The application has a bug: after the very first login it shows a gray screen
+        # It works properly after restart. So we do the restart.
         browser.driver.terminate_app(package, timeout=3000)
-
         browser.driver.activate_app(package)
         browser.element((AppiumBy.XPATH, "//android.widget.ImageButton[@content-desc='Menu']")).should(be.present)

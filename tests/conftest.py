@@ -3,18 +3,21 @@ import pytest
 import requests
 
 from config import API_URL
+from toshl_finance_demo.data.context import Context
 from toshl_finance_demo.data.user import User
-from utils import api
-from utils.attach import attach_request_and_response_data, log_request_and_response_data_to_console
+from toshl_finance_demo.utils import api
+from toshl_finance_demo.utils.attach import attach_request_and_response_data, log_request_and_response_data_to_console
 
 test_user = User.create()
 
 
 def pytest_addoption(parser):
     parser.addoption(
-        '--local',
-        help='Run tests locally with option added',
-        action='store_true'
+        '--context',
+        type=Context,
+        choices=list(Context),
+        default=Context.CLOUD,
+        help='Run tests locally or in cloud services'
     )
 
 

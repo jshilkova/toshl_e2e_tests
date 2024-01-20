@@ -1,7 +1,6 @@
 import allure
 from appium.webdriver.common.appiumby import AppiumBy
 from selene import browser, be
-
 from tests.mobile.conftest import login
 from toshl_finance_demo.data.user import User
 
