@@ -6,8 +6,11 @@ import json
 
 
 def add_screenshot(browser):
-    png = browser.driver.get_screenshot_as_png()
-    allure.attach(body=png, name='screenshot', attachment_type=AttachmentType.PNG, extension='.png')
+    allure.attach(
+        body=browser.driver.get_screenshot_as_png(),
+        name='screenshot',
+        attachment_type=AttachmentType.PNG,
+        extension='.png')
 
 
 def add_logs(browser):
@@ -27,6 +30,33 @@ def add_video(browser):
            + "' type='video/mp4'></video></body></html>"
     allure.attach(html, 'video_' + browser.driver.session_id, AttachmentType.HTML, '.html')
 
+
+def add_screen_xml_dump(browser):
+    allure.attach(
+        body=browser.driver.page_source,
+        name='screen xml dump',
+        attachment_type=allure.attachment_type.XML,
+    )
+
+
+def add_bstack_video(session_id, bs_username, bs_password):
+    import requests
+    bstack_session = requests.get(
+        f'https://api.browserstack.com/app-automate/sessions/{session_id}.json',
+        auth=(bs_username, bs_password),
+    ).json()
+    video_url = bstack_session['automation_session']['video_url']
+
+    allure.attach(
+        '<html><body>'
+        '<video width="100%" height="100%" controls autoplay>'
+        f'<source src="{video_url}" type="video/mp4">'
+        '</video>'
+        '</body></html>',
+        name='video recording',
+        attachment_type=allure.attachment_type.HTML,
+    )
+
 def as_pretty_json(data):
     if not data:
         return None
@@ -34,6 +64,7 @@ def as_pretty_json(data):
         return json.dumps(json.loads(data), indent=4, ensure_ascii=True)
     except json.JSONDecodeError:
         return None
+
 
 def attach_request_and_response_data(r, *args, **kwargs):
     allure.attach(

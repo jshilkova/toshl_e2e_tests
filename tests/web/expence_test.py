@@ -25,7 +25,7 @@ confirmation_dialog = ConfirmationDialog()
 class TestExpense:
     @allure.title('Add expense')
     @allure.severity('blocker')
-    def test_add_expense(self, session, remove_all_entries):
+    def test_add_expense(self, browser_login, remove_all_entries):
 
         with allure.step("Open expenses page"):
             expenses_page.open_or_refresh()
@@ -43,7 +43,7 @@ class TestExpense:
 
     @allure.title('Edit amount')
     @allure.severity('critical')
-    def test_edit_amount(self, session, remove_all_entries):
+    def test_edit_amount(self, session, browser_login, remove_all_entries):
         initial_amount = '120'
         new_amount = '210'
 
@@ -63,7 +63,7 @@ class TestExpense:
 
     @allure.title('Edit category')
     @allure.severity('normal')
-    def test_edit_category(self, session, remove_all_entries):
+    def test_edit_category(self, session, browser_login, remove_all_entries):
         amount = '130'
         api.add_entry(session, EntryType.EXPENSE, category.charity.id, int(amount))
 
@@ -81,7 +81,7 @@ class TestExpense:
 
     @allure.title('Add tag')
     @allure.severity('normal')
-    def test_add_tag(self, session, remove_all_entries):
+    def test_add_tag(self, session, browser_login, remove_all_entries):
         amount = '130'
         api.add_entry(session, EntryType.EXPENSE, category.education.id, int(amount))
 
@@ -99,7 +99,7 @@ class TestExpense:
 
     @allure.title('Remove tag')
     @allure.severity('normal')
-    def test_remove_tag(self, session, remove_all_entries):
+    def test_remove_tag(self, session, browser_login, remove_all_entries):
         amount = '130'
         api.add_entry(session, EntryType.EXPENSE, category.education.id, int(amount), tag_ids=[tag.books.id])
 
@@ -117,7 +117,7 @@ class TestExpense:
 
     @allure.title('Duplicate')
     @allure.severity('minor')
-    def test_duplicate(self, session, remove_all_entries):
+    def test_duplicate(self, session, browser_login, remove_all_entries):
         amount = '130'
         api.add_entry(session, EntryType.EXPENSE, category.education.id, int(amount))
 
@@ -134,7 +134,7 @@ class TestExpense:
 
     @allure.title('Delete')
     @allure.severity('critical')
-    def test_delete(self, session, remove_all_entries):
+    def test_delete(self, session, browser_login, remove_all_entries):
         amount = '130'
         api.add_entry(session, EntryType.EXPENSE, category.education.id, int(amount))
 

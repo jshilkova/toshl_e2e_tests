@@ -57,16 +57,10 @@ def collect_test_data():
 
 
 @pytest.fixture(scope="module", autouse=False)
-def session(setup_browser):
-    with allure.step("Login to Toshl Finance"):
-        s = requests.Session()
-        resp = s.post(url=f'{API_URL}/oauth2/login',
-                      data={"email": test_user.email,
-                            "password": test_user.password})
-        browser.open('/')
-        auth_cookie = resp.cookies.get("tu")
-        browser.driver.add_cookie({"name": "tu", "value": auth_cookie})
-    return s
+def browser_login(setup_browser, session):
+    browser.open('/')
+    auth_cookie = session.cookies.get("tu")
+    browser.driver.add_cookie({"name": "tu", "value": auth_cookie})
 
 
 @pytest.fixture(scope="function", autouse=False)

@@ -13,6 +13,9 @@ python-dotenv = "^1.0.0"
 pytest = "^7.4.4"
 jsonschema = "^4.21.0"
 logging = "^0.4.9.6"
+pydantic-settings = "^2.1.0"
+pydantic = "^2.5.3"
+appium-python-client = "^3.1.1"
 
 
 [build-system]
