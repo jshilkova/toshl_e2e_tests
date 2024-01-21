@@ -42,5 +42,3 @@ class TestCreateEntry:
 
         with allure.step("Validate response content is empty"):
             assert resp.json()['description'] == f'Object with id {not_existing_id} not found.'
-
-

@@ -78,7 +78,7 @@ def load_config(context):
         if ctx == Context.CLOUD:
             return '.env.bstack'
         elif ctx == Context.LOCAL:
-            return f'.env.local_emulator'
+            return '.env.local_emulator'
         else:
             raise ValueError(f'Unknown context: {ctx}')
 

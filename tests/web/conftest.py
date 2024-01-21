@@ -60,4 +60,3 @@ def remove_all_entries(session):
     entries = api.get_all_entries(session)
     for entry in entries:
         session.delete(url=f'{API_URL}/api/entries/{entry["id"]}')
-

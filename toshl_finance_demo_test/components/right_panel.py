@@ -15,4 +15,3 @@ class RightPanel:
 
     def should_have_records_count(self, count):
         browser.all('.categoriesListItem').should(have.size(count))
-

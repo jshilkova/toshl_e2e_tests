@@ -57,6 +57,7 @@ def add_bstack_video(session_id, bs_username, bs_password):
         attachment_type=allure.attachment_type.HTML,
     )
 
+
 def as_pretty_json(data):
     if not data:
         return None

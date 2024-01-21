@@ -3,7 +3,6 @@ from selene import browser, have
 
 class TransactionDetails:
 
-
     def click_edit_button(self):
         browser.element('[ng-click="onEdit()"]').click()
 
@@ -24,5 +23,3 @@ class TransactionDetails:
 
     def should_not_have_tags(self):
         browser.all('.min-col6').should(have.size(3))
-
-

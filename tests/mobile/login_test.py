@@ -20,7 +20,8 @@ class TestLogin:
         with allure.step('Verify that user is logged in'):
             browser.element((AppiumBy.XPATH, "//android.widget.ImageButton[@content-desc='Menu']")).click()
             (browser.element((AppiumBy.XPATH, f'//android.widget.TextView[@resource-id="com.thirdframestudios.'
-                                              f'android.expensoor:id/tvLeftNavItemTitle" and @text="{test_user.name}"]'))
+                                              f'android.expensoor:id/tvLeftNavItemTitle" '
+                                              f'and @text="{test_user.name}"]'))
              .should(be.present))
 
     @allure.title('Login with incorrect password')
