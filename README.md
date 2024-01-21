@@ -13,6 +13,7 @@
 > [Видео прохождения тестов](#видео-прохождения-тестов)
 > [Уведомления о прохождении в Telegram bot](#telegram-бот)
 > [Интеграция с Allure TestOps](#интеграция-с-allure-testops)
+> [Интеграция с Jira](#интеграция-с-jira)
 
 ## Автотестами проверяется
 
@@ -52,6 +53,7 @@
 <img src="images/icons/telegram.png" title="Telegram" width="50"/>
 <img src="images/icons/appium.svg" title="Appium" width="50"/>
 <img src="images/icons/browserstack.svg" title="Browserstack" width="50"/>
+<img src="images/icons/jira-original.svg" title="Jira" width="50"/>
 <p>
 
 ## Запуск на Jenkins
@@ -147,14 +149,29 @@
 
 ## Интеграция с Allure TestOps
 
-#### Дашборд с общими показателями тестовых прогонов
+##### Дашборд с общими показателями тестовых прогонов
 
-![testops dashboard](images/testops_dashboard.png)
+![testops dashboard](images/to_dashboard.png)
 
-#### Тест кейсы
+##### Тест кейсы
 
-![testops cases](images/testops_cases.png)
+![testops cases](images/to_case.png)
+
+##### TestOps интегрирован с Jenkins. Можно запустить тесты из списка
+
+![testops run](images/to_run.png)
+
+##### Доступна история запусков
+
+![testops launches](images/to_launches.png)
 
 #### Подробный отчет о запуске теста с артефактами
 
 ![testops arts](images/testops_arts.png)
+
+## Интеграция с Jira
+
+TestOps интегрирован с Jira. 
+Можно прямо в задаче посмотреть список тест кейсов и запусков
+
+![testops arts](images/jira_integration.png)
