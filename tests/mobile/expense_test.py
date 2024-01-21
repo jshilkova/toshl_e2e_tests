@@ -1,7 +1,7 @@
 import allure
 from appium.webdriver.common.appiumby import AppiumBy
 from selene import browser, have
-from tests.mobile.expense_page_helper import click_add_expense_button, enter_amount
+from tests.mobile.utils.expense_page_helper import click_add_expense_button, enter_amount
 from toshl_finance_demo_test.data import category
 
 
