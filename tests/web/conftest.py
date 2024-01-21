@@ -5,15 +5,12 @@ from selene.support.shared import browser
 from selenium import webdriver
 from selenium.webdriver.chrome.options import Options
 
-from toshl_finance_demo.data.context import Context
-from toshl_finance_demo.data.user import User
-from toshl_finance_demo.utils import api, attach
-
-API_URL = 'https://toshl.com'
-test_user = User.create()
+from config import API_URL
+from toshl_finance_demo_test.data.context import Context
+from toshl_finance_demo_test.utils import api, attach
 
 
-@pytest.fixture(scope="module", autouse=False)
+@pytest.fixture(scope="function", autouse=False)
 def setup_browser(request):
     if request.config.getoption('--context') == Context.CLOUD:
         options = Options()
@@ -43,20 +40,15 @@ def setup_browser(request):
 
     yield
 
-    browser.quit()
-
-
-@pytest.fixture(scope="function", autouse=True)
-def collect_test_data():
-    yield
-
     attach.add_html(browser)
     attach.add_screenshot(browser)
     attach.add_video(browser)
     attach.add_logs(browser)
 
+    browser.quit()
 
-@pytest.fixture(scope="module", autouse=False)
+
+@pytest.fixture(scope="function", autouse=False)
 def browser_login(setup_browser, session):
     browser.open('/')
     auth_cookie = session.cookies.get("tu")
@@ -69,7 +61,3 @@ def remove_all_entries(session):
     for entry in entries:
         session.delete(url=f'{API_URL}/api/entries/{entry["id"]}')
 
-
-@pytest.fixture(scope="function", autouse=False)
-def clean_session():
-    browser.driver.delete_cookie("tu")

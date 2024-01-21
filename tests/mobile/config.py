@@ -5,8 +5,8 @@ from appium.options.android import UiAutomator2Options
 from dotenv import load_dotenv
 from pydantic_settings import SettingsConfigDict
 
-from toshl_finance_demo.data.context import Context
-from toshl_finance_demo.utils import file_path
+from toshl_finance_demo_test.data.context import Context
+from toshl_finance_demo_test.utils import file_path
 
 
 class Common(pydantic_settings.BaseSettings):
@@ -29,7 +29,6 @@ class LocalSettings(Common):
         driver_options = super().to_driver_options()
         driver_options.set_capability('udid', self.udid)
         driver_options.set_capability('app', str(file_path.abs_path_from_project(self.app)))
-        #        driver_options.set_capability('noReset', True)
         return driver_options
 
 

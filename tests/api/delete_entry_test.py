@@ -1,10 +1,10 @@
 import allure
 import requests
 
-from toshl_finance_demo.data import category
-from toshl_finance_demo.data.transaction import EntryType
-from toshl_finance_demo.utils import api
-from .conftest import API_URL
+from toshl_finance_demo_test.data import category
+from toshl_finance_demo_test.data.transaction import EntryType
+from config import API_URL
+from toshl_finance_demo_test.utils.api import add_entry, get_all_entries
 
 
 @allure.feature('Entry API')
@@ -18,8 +18,8 @@ class TestCreateEntry:
     def test_success(self, session, remove_all_entries):
 
         with allure.step("Create entry"):
-            api.add_entry(session, EntryType.EXPENSE, category.education.id, 120)
-            entries = api.get_all_entries(session)
+            add_entry(session, EntryType.EXPENSE, category.education.id, 120)
+            entries = get_all_entries(session)
 
         with allure.step("Delete entry"):
             resp = session.delete(url=f'{API_URL}/api/entries/{entries[0]["id"]}')

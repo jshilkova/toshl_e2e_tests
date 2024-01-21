@@ -6,9 +6,9 @@ from appium import webdriver
 from appium.webdriver.common.appiumby import AppiumBy
 from selene import browser, support, be
 
-from toshl_finance_demo.data.context import Context
-from toshl_finance_demo.data.user import User
-from toshl_finance_demo.utils import attach
+from toshl_finance_demo_test.data.context import Context
+from toshl_finance_demo_test.data.user import test_user
+from toshl_finance_demo_test.utils import attach
 from .config import load_config
 
 config_key = StashKey()
@@ -50,8 +50,7 @@ def mobile_management(pytestconfig):
 
 @pytest.fixture(scope='function', autouse=False)
 def login_with_test_user():
-    user = User.create()
-    login(user)
+    login(test_user)
 
 
 def login(user):

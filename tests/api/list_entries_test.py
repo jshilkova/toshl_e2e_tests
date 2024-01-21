@@ -3,11 +3,11 @@ import allure
 import jsonschema
 import requests
 from config import API_URL
-from toshl_finance_demo.data import category
-from toshl_finance_demo.data.transaction import EntryType
+from toshl_finance_demo_test.data import category
+from toshl_finance_demo_test.data.transaction import EntryType
+from toshl_finance_demo_test.utils.api import add_entry
 
-from toshl_finance_demo.utils.load_schema import load_schema
-from toshl_finance_demo.utils import api
+from toshl_finance_demo_test.utils.load_schema import load_schema
 
 
 @allure.feature('Entry API')
@@ -19,8 +19,8 @@ class TestGetEntries:
     @allure.title('Get entries')
     @allure.severity('critical')
     def test_response_success(self, session, remove_all_entries):
-        api.add_entry(session, EntryType.EXPENSE, category.education.id, 120)
-        api.add_entry(session, EntryType.EXPENSE, category.charity.id, 140)
+        add_entry(session, EntryType.EXPENSE, category.education.id, 120)
+        add_entry(session, EntryType.EXPENSE, category.charity.id, 140)
 
         with allure.step("Get entries"):
             resp = session.get(url=f'{API_URL}/api/entries/',

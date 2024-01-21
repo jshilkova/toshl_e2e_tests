@@ -1,8 +1,8 @@
 import allure
-from toshl_finance_demo.components.left_panel import LeftPanel
-from toshl_finance_demo.components.right_panel import RightPanel
-from toshl_finance_demo.pages.login_page import LoginPage
-from .conftest import test_user
+from toshl_finance_demo_test.components.left_panel import LeftPanel
+from toshl_finance_demo_test.components.right_panel import RightPanel
+from toshl_finance_demo_test.data.user import test_user
+from toshl_finance_demo_test.pages.login_page import LoginPage
 
 right_panel = RightPanel()
 login_page = LoginPage()
@@ -32,7 +32,7 @@ class TestLogin:
 
     @allure.title('Login with incorrect password')
     @allure.severity('normal')
-    def test_failed_login_with_incorrect_password(self, setup_browser, clean_session):
+    def test_failed_login_with_incorrect_password(self, setup_browser):
         with allure.step("Open login page"):
             login_page.open()
 

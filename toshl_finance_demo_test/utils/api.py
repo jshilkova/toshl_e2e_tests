@@ -5,7 +5,7 @@ import allure
 from requests import Session
 
 from config import API_URL
-from toshl_finance_demo.data.transaction import EntryType
+from toshl_finance_demo_test.data.transaction import EntryType
 
 
 def add_entry(session: Session, entry_type: EntryType, category_id: str, amount: int, tag_ids=None):

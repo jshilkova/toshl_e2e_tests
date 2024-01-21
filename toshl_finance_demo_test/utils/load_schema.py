@@ -1,7 +1,6 @@
 import json
-from pathlib import Path
 
-from toshl_finance_demo.utils.file_path import abs_path_from_project
+from toshl_finance_demo_test.utils.file_path import abs_path_from_project
 
 
 def load_schema(filepath):

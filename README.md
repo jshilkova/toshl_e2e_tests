@@ -2,7 +2,7 @@
 
 [Toshl personal finance](https://toshl.com/personal-finance/)
 
-![main page screenshot](toshl_finance_demo/images/toshl.gif)
+![main page screenshot](images/toshl.gif)
 
 ## Содержание:
 
@@ -41,17 +41,17 @@
 ## Технологии
 
 <p align="center">
-<img src="toshl_finance_demo/images/icons/python.svg" title="Python" width="50"/> 
-<img src="toshl_finance_demo/images/icons/pytest.png" title="Pytest" width="50"/>
-<img src="toshl_finance_demo/images/icons/selene.png" title="Selene" width="55"/>
-<img src="toshl_finance_demo/images/icons/selenium.png" title="Selenium" width="50"/>
-<img src="toshl_finance_demo/images/icons/jenkins.png" title="Jenkins" width="50"/>
-<img src="toshl_finance_demo/images/icons/selenoid.png" title="Selenoid" width="50"/>
-<img src="toshl_finance_demo/images/icons/allure_report.png" title="Allure Reports" width="50"/>
-<img src="toshl_finance_demo/images/icons/allure_testops.png" title="Allure TestOps" width="50"/>
-<img src="toshl_finance_demo/images/icons/telegram.png" title="Telegram" width="50"/>
-<img src="toshl_finance_demo/images/icons/appium.svg" title="Appium" width="50"/>
-<img src="toshl_finance_demo/images/icons/browserstack.svg" title="Browserstack" width="50"/>
+<img src="images/icons/python.svg" title="Python" width="50"/> 
+<img src="images/icons/pytest.png" title="Pytest" width="50"/>
+<img src="images/icons/selene.png" title="Selene" width="55"/>
+<img src="images/icons/selenium.png" title="Selenium" width="50"/>
+<img src="images/icons/jenkins.png" title="Jenkins" width="50"/>
+<img src="images/icons/selenoid.png" title="Selenoid" width="50"/>
+<img src="images/icons/allure_report.png" title="Allure Reports" width="50"/>
+<img src="images/icons/allure_testops.png" title="Allure TestOps" width="50"/>
+<img src="images/icons/telegram.png" title="Telegram" width="50"/>
+<img src="images/icons/appium.svg" title="Appium" width="50"/>
+<img src="images/icons/browserstack.svg" title="Browserstack" width="50"/>
 <p>
 
 ## Запуск на Jenkins
@@ -70,7 +70,7 @@
 5. Нажать кнопку `Build`
 6. Результат запуска сборки можно посмотреть в отчёте Allure
 
-![jenkins job](toshl_finance_demo/images/Jenkins_job.png)
+![jenkins job](images/Jenkins_job.png)
 
 ## Локальный запуск
 
@@ -119,42 +119,42 @@
 
 #### Общие результаты
 
-![allure dashboard](toshl_finance_demo/images/allure_dashboard.png)
+![allure dashboard](images/allure_dashboard.png)
 
 #### Подробный отчет о прохождении теста
 
 Для каждого теста помимо шагов добавлены скриншот, код страницы, видео прохождения и логи браузера,
 чтобы легче находить причину, по которой упал тест.
 
-![allure details](toshl_finance_demo/images/allure_test.png)
+![allure details](images/allure_test.png)
 
 ## Видео прохождения тестов
 
 #### Web/UI тесты
 
-![web video](toshl_finance_demo/images/web_video.gif)
+![web video](images/web_video.gif)
 
 #### Mobile тесты
 
-![web video](toshl_finance_demo/images/mobile_vodeo.gif)
+![web video](images/mobile_vodeo.gif)
 
 ## Telegram бот
 
 Результаты прохождения тестов приходят в чат в Telegram: так ответственные могут быстро узнавать о проблемах.
 В кратком отчете есть процент упавших тестов и ссылка на страницу с подробным allure отчетом.
 
-<img src="toshl_finance_demo/images/telegram_notification.png" width="400">
+<img src="images/telegram_notification.png" width="400">
 
 ## Интеграция с Allure TestOps
 
 #### Дашборд с общими показателями тестовых прогонов
 
-![testops dashboard](toshl_finance_demo/images/testops_dashboard.png)
+![testops dashboard](images/testops_dashboard.png)
 
 #### Тест кейсы
 
-![testops cases](toshl_finance_demo/images/testops_cases.png)
+![testops cases](images/testops_cases.png)
 
 #### Подробный отчет о запуске теста с артефактами
 
-![testops arts](toshl_finance_demo/images/testops_arts.png)
+![testops arts](images/testops_arts.png)

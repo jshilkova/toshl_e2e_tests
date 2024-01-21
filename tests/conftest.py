@@ -3,12 +3,11 @@ import pytest
 import requests
 
 from config import API_URL
-from toshl_finance_demo.data.context import Context
-from toshl_finance_demo.data.user import User
-from toshl_finance_demo.utils import api
-from toshl_finance_demo.utils.attach import attach_request_and_response_data, log_request_and_response_data_to_console
-
-test_user = User.create()
+from toshl_finance_demo_test.data.context import Context
+from toshl_finance_demo_test.data.user import test_user
+from toshl_finance_demo_test.utils import api
+from toshl_finance_demo_test.utils.attach import attach_request_and_response_data, \
+    log_request_and_response_data_to_console
 
 
 def pytest_addoption(parser):
@@ -21,7 +20,7 @@ def pytest_addoption(parser):
     )
 
 
-@pytest.fixture(scope="module", autouse=False)
+@pytest.fixture(scope="function", autouse=False)
 def session():
     with allure.step("Login to Toshl Finance"):
         s = requests.Session()
