@@ -13,7 +13,7 @@ from config import API_URL
 class TestCreateEntry:
     @allure.title('Create income entry')
     @allure.severity('blocker')
-    def test_response_success(self, session, remove_all_entries):
+    def test_create_income_success(self, session, remove_all_entries):
         with allure.step("Create entry"):
             resp = session.post(url=f'{API_URL}/api/entries',
                                 params={"immediate_update": "true"},

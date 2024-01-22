@@ -5,7 +5,7 @@ import requests
 from config import API_URL
 from toshl_finance_demo_test.data.context import Context
 from toshl_finance_demo_test.data.user import test_user
-from toshl_finance_demo_test.utils import api
+from toshl_finance_demo_test.utils.api import get_all_entries
 from toshl_finance_demo_test.utils.attach import attach_request_and_response_data, \
     log_request_and_response_data_to_console
 
@@ -34,6 +34,6 @@ def session():
 @pytest.fixture(scope="function", autouse=False)
 def remove_all_entries(session):
     with allure.step("Remove all entries from test account"):
-        entries = api.get_all_entries(session)
+        entries = get_all_entries(session)
         for entry in entries:
             session.delete(url=f'{API_URL}/api/entries/{entry["id"]}')

@@ -3,11 +3,11 @@ import allure_commons
 import pytest
 from _pytest.stash import StashKey
 from appium import webdriver
-from appium.webdriver.common.appiumby import AppiumBy
-from selene import browser, support, be
+from selene import browser, support
 
 from toshl_finance_demo_test.data.context import Context
 from toshl_finance_demo_test.data.user import test_user
+from toshl_finance_demo_test.pages.mobile import welcome_page, login_page
 from toshl_finance_demo_test.utils import attach
 from .config import load_config
 
@@ -37,36 +37,18 @@ def mobile_management(pytestconfig):
 
     yield
 
-    attach.add_screenshot(browser)
-    attach.add_screen_xml_dump(browser)
+    attach.screenshot(browser)
+    attach.screen_xml_dump(browser)
     session_id = browser.driver.session_id
 
     with allure.step('Tear down app sessioncwith id' + session_id):
         browser.quit()
 
     if pytestconfig.getoption('--context') == Context.CLOUD:
-        attach.add_bstack_video(session_id, config.options.bs_username, config.options.bs_password)
+        attach.bstack_video(session_id, config.options.bs_username, config.options.bs_password)
 
 
 @pytest.fixture(scope='function', autouse=False)
 def login_with_test_user():
-    login(test_user)
-
-
-def login(user):
-    with allure.step('Login with test user'):
-        browser.element((AppiumBy.ID, "btnLogin")).click()
-        browser.element((AppiumBy.ID, "btnLogin")).click()
-        browser.element((AppiumBy.ID, "etEmail")).type(user.email)
-        browser.element((AppiumBy.ID, "etPassword")).type(user.password)
-        browser.element((AppiumBy.ID, "bLogIn")).click()
-
-        package = browser.driver.current_package
-        browser.wait_until((AppiumBy.XPATH, '//android.widget.TextView[@text="I’m syncing..."]'))
-        browser.element((AppiumBy.XPATH, '//android.widget.TextView[@text="I’m syncing..."]')).should(be.not_.present)
-
-        # The application has a bug: after the very first login it shows a gray screen
-        # It works properly after restart. So we do the restart.
-        browser.driver.terminate_app(package, timeout=3000)
-        browser.driver.activate_app(package)
-        browser.element((AppiumBy.XPATH, "//android.widget.ImageButton[@content-desc='Menu']")).should(be.present)
+    welcome_page.click_login_link()
+    login_page.login(test_user)

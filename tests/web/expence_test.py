@@ -1,19 +1,13 @@
 import allure
 
-from toshl_finance_demo_test.components.confirmation_dialog import ConfirmationDialog
-from toshl_finance_demo_test.components.right_panel import RightPanel
-from toshl_finance_demo_test.components.transaction_details import TransactionDetails
-from toshl_finance_demo_test.components.transaction_dialog import TransactionDialog
+from toshl_finance_demo_test.components import confirmation_dialog
+from toshl_finance_demo_test.components import right_panel
+from toshl_finance_demo_test.components import transaction_details
+from toshl_finance_demo_test.components import transaction_dialog
 from toshl_finance_demo_test.data import category, tag
 from toshl_finance_demo_test.data.transaction import EntryType
-from toshl_finance_demo_test.pages.expences_page import ExpensesPage
+from toshl_finance_demo_test.pages.web import expenses_page
 from toshl_finance_demo_test.utils import api
-
-right_panel = RightPanel()
-expenses_page = ExpensesPage()
-transaction_dialog = TransactionDialog()
-transaction_details = TransactionDetails()
-confirmation_dialog = ConfirmationDialog()
 
 
 @allure.feature('Entries')
@@ -26,7 +20,6 @@ class TestExpense:
     @allure.title('Add expense')
     @allure.severity('blocker')
     def test_add_successfully_without_tag(self, browser_login, remove_all_entries):
-
         with allure.step("Open expenses page"):
             expenses_page.open_or_refresh()
 

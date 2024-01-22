@@ -7,7 +7,8 @@ from selenium.webdriver.chrome.options import Options
 
 from config import API_URL
 from toshl_finance_demo_test.data.context import Context
-from toshl_finance_demo_test.utils import api, attach
+from toshl_finance_demo_test.utils import attach
+from toshl_finance_demo_test.utils.api import get_all_entries
 
 
 @pytest.fixture(scope="function", autouse=False)
@@ -40,10 +41,10 @@ def setup_browser(request):
 
     yield
 
-    attach.add_html(browser)
-    attach.add_screenshot(browser)
-    attach.add_video(browser)
-    attach.add_logs(browser)
+    attach.html(browser)
+    attach.screenshot(browser)
+    attach.video(browser)
+    attach.logs(browser)
 
     browser.quit()
 
@@ -57,6 +58,6 @@ def browser_login(setup_browser, session):
 
 @pytest.fixture(scope="function", autouse=False)
 def remove_all_entries(session):
-    entries = api.get_all_entries(session)
+    entries = get_all_entries(session)
     for entry in entries:
         session.delete(url=f'{API_URL}/api/entries/{entry["id"]}')

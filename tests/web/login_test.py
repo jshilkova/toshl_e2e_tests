@@ -1,12 +1,7 @@
 import allure
-from toshl_finance_demo_test.components.left_panel import LeftPanel
-from toshl_finance_demo_test.components.right_panel import RightPanel
+from toshl_finance_demo_test.components import left_panel
 from toshl_finance_demo_test.data.user import test_user
-from toshl_finance_demo_test.pages.login_page import LoginPage
-
-right_panel = RightPanel()
-login_page = LoginPage()
-left_panel = LeftPanel()
+from toshl_finance_demo_test.pages.web import login_page
 
 
 @allure.feature('Authorization')

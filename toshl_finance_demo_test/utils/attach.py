@@ -5,7 +5,7 @@ from allure_commons.types import AttachmentType
 import json
 
 
-def add_screenshot(browser):
+def screenshot(browser):
     allure.attach(
         body=browser.driver.get_screenshot_as_png(),
         name='screenshot',
@@ -13,25 +13,25 @@ def add_screenshot(browser):
         extension='.png')
 
 
-def add_logs(browser):
+def logs(browser):
     log = "".join(f'{text}\n' for text in browser.driver.get_log(log_type='browser'))
     allure.attach(log, 'browser_logs', AttachmentType.TEXT, '.log')
 
 
-def add_html(browser):
-    html = browser.driver.page_source
-    allure.attach(html, 'page_source', AttachmentType.HTML, '.html')
+def html(browser):
+    page_html = browser.driver.page_source
+    allure.attach(page_html, 'page_source', AttachmentType.HTML, '.html')
 
 
-def add_video(browser):
+def video(browser):
     video_url = "https://selenoid.autotests.cloud/video/" + browser.driver.session_id + ".mp4"
-    html = "<html><body><video width='100%' height='100%' controls autoplay><source src='" \
-           + video_url \
-           + "' type='video/mp4'></video></body></html>"
-    allure.attach(html, 'video_' + browser.driver.session_id, AttachmentType.HTML, '.html')
+    page_html = "<html><body><video width='100%' height='100%' controls autoplay><source src='" \
+                + video_url \
+                + "' type='video/mp4'></video></body></html>"
+    allure.attach(page_html, 'video_' + browser.driver.session_id, AttachmentType.HTML, '.html')
 
 
-def add_screen_xml_dump(browser):
+def screen_xml_dump(browser):
     allure.attach(
         body=browser.driver.page_source,
         name='screen xml dump',
@@ -39,7 +39,7 @@ def add_screen_xml_dump(browser):
     )
 
 
-def add_bstack_video(session_id, bs_username, bs_password):
+def bstack_video(session_id, bs_username, bs_password):
     import requests
     bstack_session = requests.get(
         f'https://api.browserstack.com/app-automate/sessions/{session_id}.json',

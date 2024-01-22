@@ -6,7 +6,7 @@ from dotenv import load_dotenv
 from pydantic_settings import SettingsConfigDict
 
 from toshl_finance_demo_test.data.context import Context
-from toshl_finance_demo_test.utils import file_path
+from toshl_finance_demo_test.utils.file_path import abs_path_from_project
 
 
 class Common(pydantic_settings.BaseSettings):
@@ -28,7 +28,7 @@ class LocalSettings(Common):
     def to_driver_options(self):
         driver_options = super().to_driver_options()
         driver_options.set_capability('udid', self.udid)
-        driver_options.set_capability('app', str(file_path.abs_path_from_project(self.app)))
+        driver_options.set_capability('app', str(abs_path_from_project(self.app)))
         return driver_options
 
 
@@ -82,7 +82,7 @@ def load_config(context):
         else:
             raise ValueError(f'Unknown context: {ctx}')
 
-    if not load_dotenv(dotenv_path=str(file_path.abs_path_from_project(to_dotenv_file_name(context)))):
+    if not load_dotenv(dotenv_path=str(abs_path_from_project(to_dotenv_file_name(context)))):
         raise Exception('Failed to load environment')
     config: Union[LocalSettings, BstackSettings] = _setup[context]()
     return config

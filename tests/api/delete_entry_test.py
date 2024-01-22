@@ -15,7 +15,7 @@ from toshl_finance_demo_test.utils.api import add_entry, get_all_entries
 class TestCreateEntry:
     @allure.title('Delete entry successfully')
     @allure.severity('blocker')
-    def test_success(self, session, remove_all_entries):
+    def test_delete_existing_entry(self, session, remove_all_entries):
 
         with allure.step("Create entry"):
             add_entry(session, EntryType.EXPENSE, category.education.id, 120)
@@ -32,7 +32,7 @@ class TestCreateEntry:
 
     @allure.title('Delete not existing entry')
     @allure.severity('normal')
-    def test_failed_not_existing(self, session, remove_all_entries):
+    def test_delete_not_existing_entry_should_fail(self, session, remove_all_entries):
         not_existing_id = "1"
         with allure.step("Delete entry"):
             resp = session.delete(url=f'{API_URL}/api/entries/{not_existing_id}')

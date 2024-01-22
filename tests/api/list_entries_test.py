@@ -18,7 +18,7 @@ from toshl_finance_demo_test.utils.load_schema import load_schema
 class TestGetEntries:
     @allure.title('Get entries')
     @allure.severity('critical')
-    def test_response_success(self, session, remove_all_entries):
+    def test_get_entries_success(self, session, remove_all_entries):
         add_entry(session, EntryType.EXPENSE, category.education.id, 120)
         add_entry(session, EntryType.EXPENSE, category.charity.id, 140)
 
@@ -47,7 +47,7 @@ class TestGetEntries:
 
     @allure.title('Get empty entries list')
     @allure.severity('minor')
-    def test_empty_response(self, session, remove_all_entries):
+    def test_get_entries_with_empty_response(self, session, remove_all_entries):
 
         with allure.step("Get entries"):
             resp = session.get(url=f'{API_URL}/api/entries/',
