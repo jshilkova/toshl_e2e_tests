@@ -5,6 +5,7 @@ from requests import Session
 
 from config import API_URL
 from toshl_finance_demo_test.data.transaction import EntryType
+from toshl_finance_demo_test.data.user import test_user
 
 
 def add_entry(session: Session, entry_type: EntryType, category_id: str, amount: int, tag_ids=None):
@@ -23,7 +24,7 @@ def add_entry(session: Session, entry_type: EntryType, category_id: str, amount:
                            "currency":
                                {"code": "GEL"
                                 },
-                           "account": "4346873",
+                           "account": test_user.account,
                            "category": category_id,
                            "tags": tag_ids})
 

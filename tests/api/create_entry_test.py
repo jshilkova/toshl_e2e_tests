@@ -3,6 +3,7 @@ import allure
 import requests
 from toshl_finance_demo_test.data import category
 from config import API_URL
+from toshl_finance_demo_test.data.user import test_user
 
 
 @allure.feature('Entry API')
@@ -22,7 +23,7 @@ class TestCreateEntry:
                                       "currency":
                                           {"code": "GEL"
                                            },
-                                      "account": "4346873",
+                                      "account": test_user.account,
                                       "category": category.grants.id,
                                       "tags": []})
 
